@@ -144,17 +144,21 @@ def team_colors name
 end
 
 def team_names
-  # [game_hash[:home][:team_name], game_hash[:away][:team_name]]
-  game_hash.map do |home_or_away, team_obj| #key, value
-    team_obj[:team_name]
-  end
+  # teams = ""
+  [game_hash[:home][:team_name], game_hash[:away][:team_name]]
+  # teams.each do |team|
+  #   names << team[:team_name]
+  # end
+  # teams
 end
 
 def player_numbers team
   jersey_team = find_team team
-  jersey_team[:players].map do |player|
+  # return player jersey nums
+  numbers = jersey_team[:players].map do |player|
     player[:number]
   end
+  numbers
 end
 
 def player_stats player_name
@@ -174,16 +178,6 @@ def big_shoe_rebounds
   bigfoot[:rebounds]
 end
 
-  # def big_shoe_player
-  #   # https://ruby-doc.org/core-3.0.1/Enumerable.html#method-i-max_by
-  #   all_players.max_by do |player|
-  #     player[:shoe]
-  #   end
-  # end
-
-# def big_shoe_rebounds
-  # big_shoe_player[:rebounds]
-# end
 
 # Helper functions
 
@@ -191,11 +185,25 @@ def all_players
   game_hash[:home][:players] + game_hash[:away][:players]
 end
 
+def teams
+  game_hash[:home] + game_hash[:away]
+end
+
 def find_team name
   if game_hash[:home][:team_name] == name
+    # p game_hash[:home] #[:team_name]
     return game_hash[:home]
   else
+    # p game_hash[:away]
     game_hash[:away]
   end
 end
 
+    # def game_hash
+    #   {
+    #     home: {
+    #       team_name: "Brooklyn Nets",
+    #       colors: ["Black", "White"],
+    #       players: [
+    #         {
+    #           player_name:
